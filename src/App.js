@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import styles from './style.module.css';
+import Receipt from './components/Receipt';
+import {useState} from "react";
 function App() {
+    const [show, setShow] = useState(false);
+    const handleClick = (state) => {
+      setShow(state);
+    };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.wrapper}>
+        {!show && <button onClick={() => handleClick(true)} className={styles.button}>Оплатить картой</button>}
+        {show && <Receipt handleClick={handleClick} />}
     </div>
   );
 }
